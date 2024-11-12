@@ -1,0 +1,48 @@
+<!-- jobs/templates/jobs/job_results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto p-8">
+        <header class="mb-8 flex justify-between items-center">
+            <h1 class="text-4xl font-extrabold text-blue-400">Job Results</h1>
+            <a href="{% url 'search_jobs' %}" class="text-blue-400 hover:text-blue-500 underline font-semibold transition duration-200">
+                Back to Search
+            </a>
+        </header>
+
+        <ul class="space-y-8 mx-auto max-w-4xl">
+            {% for job in jobs %}
+                <li class="bg-gray-800 p-8 rounded-lg shadow-lg transform transition-all hover:scale-105 duration-200 hover:bg-gray-700">
+                    <div class="flex items-center mb-6">
+                        <img src="{{ job.companyLogo }}" alt="{{ job.company }} logo" class="w-16 h-16 rounded-full border-2 border-blue-400 mr-6 shadow-lg">
+                        <div>
+                            <h2 class="text-3xl font-bold text-blue-300">{{ job.position }}</h2>
+                            <p class="text-gray-400 font-semibold text-lg">{{ job.company }}</p>
+                        </div>
+                    </div>
+                    <div class="text-gray-300 space-y-2">
+                        <p>📍 Location: <span class="font-semibold">{{ job.location }}</span></p>
+                        <p>📅 Date Posted: <span class="font-semibold">{{ job.date }}</span></p>
+                        <p>💰 Salary: <span class="font-semibold">{{ job.salary }}</span></p>
+                    </div>
+                    <div class="mt-6 text-right">
+                        <a href="{{ job.jobUrl }}" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-3 rounded-lg font-bold shadow-md transition-colors duration-200 inline-block">
+                            Apply Here
+                        </a>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="bg-gray-800 p-8 rounded-lg shadow-lg text-center text-gray-400">
+                    No jobs found.
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
