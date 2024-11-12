@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-900 text-green-500">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Terminal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center min-h-screen font-mono">
+    <div class="bg-gray-800 p-6 rounded-lg w-full max-w-md shadow-lg">
+        <!-- Display Name and Skills -->
+        <h1 class="text-2xl mb-2">👤 Harshvardhan Patil</h1>
+        <p class="mb-4 text-gray-400">Full Stack Developer</p>
+        
+        <h2 class="text-lg mb-1">Skills:</h2>
+        <ul class="list-disc ml-5 text-gray-300">
+            <li>JavaScript, Python, Java</li>
+            <li>React, Django, Node.js</li>
+            <li>HTML, CSS, Tailwind CSS, Bootstrap</li>
+            <li>MongoDB, MySQL</li>
+        </ul>
+        
+        <!-- Contact Form -->
+        <h2 class="text-lg mt-6 mb-2">Contact Me</h2>
+        <form method="POST" novalidate>
+            {% csrf_token %}
+            {{ form.email }}
+            <button type="submit" class="mt-4 bg-green-500 text-gray-900 px-4 py-2 rounded">Submit</button>
+        </form>
+
+        <!-- Success Message -->
+        {% if success_message %}
+            <p class="mt-4 text-green-400">{{ success_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
